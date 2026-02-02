@@ -153,7 +153,7 @@ python -m sdc.eval --pred_root preds --num_classes 2 --out_csv acdc_table.csv
 
 ---
 
-## 3) Methods implemented?
+## 3) Methods Implemtation
 
 ### 3.1 SDC loss (Listing 2)
 
