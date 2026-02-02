@@ -3,7 +3,9 @@
 This repo is a **clean, runnable** reference implementation for the paper:
 
 > **Calibrating on Medical Segmentation Model through Signed-Distance** (CIKM 2025)  
-> Wenhao Liang et al.
+<img width="4390" height="2621" alt="image" src="https://github.com/user-attachments/assets/86b16ed1-84ed-4af1-bb82-bd91d37791ef" />
+<img width="5564" height="1517" alt="image" src="https://github.com/user-attachments/assets/95fed592-3c46-4ad5-a117-31dff020fc5d" />
+
 
 It includes:
 - **SDC loss** = CE + *local calibration* (SAM) + *SDF alignment* (Listing 2)
