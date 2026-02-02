@@ -1,4 +1,4 @@
-# SDC Reproduction Pack (Code + Tables)
+# SDC Reproduction
 
 This repo is a **clean, runnable** reference implementation for the paper:
 
