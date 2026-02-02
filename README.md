@@ -12,7 +12,10 @@ It includes:
 - A unified training/evaluation pipeline for common baselines used in the paper:
   `DiceCE`, `Focal`, `ECP`, `Label Smoothing`, `SVLS` (approx), `MbLS` (lightweight), `NACL` (approx), `FCL`, `SDC`
 
-> ⚠️ Note on baselines: for **NACL/SVLS/MbLS**, this repo provides faithful **protocol-level** implementations, but not the original authors’ full code (some papers have additional details).  
+> ⚠️ Note on baselines: for **NACL/SVLS/MbLS**, please refer to the original authors’ full code (some papers have additional details).
+> NACL: https://github.com/Bala93/MarginLoss
+> SVLS: https://github.com/mobarakol/SVLS
+> MbLS: https://github.com/by-liu/MbLS/
 > If you point the pipeline to the **exact same data split + preprocessing + training schedule**, you should be able to reproduce the tables. If you want bitwise-identical numbers, use the original baseline repos and plug their predictions into `sdc-eval`.
 
 ---
@@ -56,7 +59,7 @@ You should see a printed table and `toy_results.csv`.
 
 ---
 
-## 2) Reproducing the Paper Tables (ACDC / FLARE / BraTS / Prostate)
+## 2) Reproducing Tables (ACDC / FLARE / BraTS / Prostate)
 
 ### 2.1 Required data format
 
@@ -79,7 +82,7 @@ Each `.npz` must contain:
 
 For FLARE: the paper mentions volumes resampled and cropped to **192×192×30**.
 
-### 2.2 Training settings (from the paper)
+### 2.2 Training settings 
 
 - Optimizer: **AdamW**
 - Initial LR: **1e-4**
@@ -144,7 +147,7 @@ python -m sdc.eval --pred_root preds --num_classes 2 --out_csv acdc_table.csv
 
 ---
 
-## 3) What exactly is implemented?
+## 3) Methods implemented?
 
 ### 3.1 SDC loss (Listing 2)
 
@@ -180,7 +183,7 @@ If you use this code, please cite the paper:
 ```bibtex
 @inproceedings{liang2025sdc,
   title={Calibrating on Medical Segmentation Model through Signed-Distance},
-  author={Liang, Wenhao and others},
+  author={Liang, Wenhao and Zhang, Emma Wei and Yue, Lin and Xu, Miao and Maennel, Olaf and Chen, Weitong},
   booktitle={Proceedings of the 34th ACM International Conference on Information and Knowledge Management (CIKM)},
   year={2025}
 }
