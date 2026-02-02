@@ -1,0 +1,24 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "sdc-repro"
+version = "0.1.0"
+description = "Reproducible codebase for Signed Distance Calibration (SDC) and pixel-wise ECE (pECE) for medical segmentation."
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = [
+  "numpy",
+  "scipy",
+  "pandas",
+  "pyyaml",
+  "tqdm",
+  "opencv-python",
+  "torch",
+]
+
+[project.scripts]
+sdc-train = "sdc.train:main"
+sdc-infer = "sdc.infer:main"
+sdc-eval = "sdc.eval:main"
