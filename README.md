@@ -1,6 +1,6 @@
 # SDC Reproduction
 
-This repo is a **clean, runnable** reference implementation for the paper:
+This repo is an implementation for:
 
 > **Calibrating on Medical Segmentation Model through Signed-Distance** (CIKM 2025)  
 <img width="4390" height="2621" alt="image" src="https://github.com/user-attachments/assets/86b16ed1-84ed-4af1-bb82-bd91d37791ef" />
