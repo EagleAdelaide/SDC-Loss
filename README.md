@@ -15,9 +15,13 @@ It includes:
   `DiceCE`, `Focal`, `ECP`, `Label Smoothing`, `SVLS` (approx), `MbLS` (lightweight), `NACL` (approx), `FCL`, `SDC`
 
 > ⚠️ Note on baselines: for **NACL/SVLS/MbLS**, please refer to the original authors’ full code (some papers have additional details).
+> 
 > NACL: https://github.com/Bala93/MarginLoss
+> 
 > SVLS: https://github.com/mobarakol/SVLS
+> 
 > MbLS: https://github.com/by-liu/MbLS/
+> 
 > If you point the pipeline to the **exact same data split + preprocessing + training schedule**, you should be able to reproduce the tables. If you want bitwise-identical numbers, use the original baseline repos and plug their predictions into `sdc-eval`.
 
 ---
