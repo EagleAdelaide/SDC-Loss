@@ -1,0 +1,48 @@
+seed: 42
+run_name: toy_ecp
+method: ecp
+dataset:
+  name: toy
+  root: data/toy
+model:
+  arch: unet2d
+  in_channels: 1
+  num_classes: 2
+  base: 16
+batch_size: 8
+num_workers: 0
+epochs: 3
+optim:
+  lr: 0.001
+  weight_decay: 0.0001
+scheduler:
+  type: cosine
+sdc:
+  alpha: 0.1
+  lam_sdf: 0.1
+  sam_morph: gradient
+  sam_kernel: mean
+  sdf_scale: 100.0
+focal:
+  gamma: 3.0
+fcl:
+  gamma: 3.0
+  lam: 0.1
+labelsmoothing:
+  alpha: 0.1
+ecp:
+  lam: 0.1
+nacl:
+  kernel: min
+  alpha: 0.1
+  dist: l1
+svls:
+  sigma: 2.0
+  alpha: 0.1
+  dist: l1
+mbls:
+  m: 10.0
+  alpha: 0.1
+dicece:
+  dice_weight: 1.0
+  ce_weight: 1.0
