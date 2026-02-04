@@ -4,6 +4,33 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 
+def _center_crop_or_pad(x: torch.Tensor, target_spatial: Tuple[int, ...]) -> torch.Tensor:
+    """Match x spatial size to target_spatial via center-crop or symmetric pad."""
+    if x.shape[2:] == target_spatial:
+        return x
+    # Crop if larger
+    slices = [slice(None), slice(None)]
+    for dim, tgt in zip(x.shape[2:], target_spatial):
+        if dim >= tgt:
+            start = (dim - tgt) // 2
+            slices.append(slice(start, start + tgt))
+        else:
+            slices.append(slice(None))
+    x = x[tuple(slices)]
+    if x.shape[2:] == target_spatial:
+        return x
+    # Pad if smaller
+    pad = []
+    for dim, tgt in zip(reversed(x.shape[2:]), reversed(target_spatial)):
+        if dim >= tgt:
+            pad.extend([0, 0])
+        else:
+            total = tgt - dim
+            left = total // 2
+            right = total - left
+            pad.extend([left, right])
+    return F.pad(x, pad)
+
 def conv_block_2d(in_ch: int, out_ch: int) -> nn.Module:
     return nn.Sequential(
         nn.Conv2d(in_ch, out_ch, 3, padding=1, bias=False),
@@ -42,10 +69,13 @@ class UNet2D(nn.Module):
         e3 = self.enc3(self.pool2(e2))
         b = self.bottleneck(self.pool3(e3))
         d3 = self.up3(b)
+        e3 = _center_crop_or_pad(e3, d3.shape[2:])
         d3 = self.dec3(torch.cat([d3, e3], dim=1))
         d2 = self.up2(d3)
+        e2 = _center_crop_or_pad(e2, d2.shape[2:])
         d2 = self.dec2(torch.cat([d2, e2], dim=1))
         d1 = self.up1(d2)
+        e1 = _center_crop_or_pad(e1, d1.shape[2:])
         d1 = self.dec1(torch.cat([d1, e1], dim=1))
         return self.head(d1)
 
@@ -87,9 +117,12 @@ class UNet3D(nn.Module):
         e3 = self.enc3(self.pool2(e2))
         b = self.bottleneck(self.pool3(e3))
         d3 = self.up3(b)
+        e3 = _center_crop_or_pad(e3, d3.shape[2:])
         d3 = self.dec3(torch.cat([d3, e3], dim=1))
         d2 = self.up2(d3)
+        e2 = _center_crop_or_pad(e2, d2.shape[2:])
         d2 = self.dec2(torch.cat([d2, e2], dim=1))
         d1 = self.up1(d2)
+        e1 = _center_crop_or_pad(e1, d1.shape[2:])
         d1 = self.dec1(torch.cat([d1, e1], dim=1))
         return self.head(d1)
