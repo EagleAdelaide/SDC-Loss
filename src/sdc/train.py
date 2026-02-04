@@ -144,7 +144,8 @@ def main() -> None:
         if v_meter.avg < best_val:
             best_val = v_meter.avg
             torch.save({"model": model.state_dict(), "cfg": cfg}, outdir/"best.pt")
-        (outdir/"log.txt").open("a").write(f"epoch={epoch} train_loss={meter.avg:.6f} val_loss={v_meter.avg:.6f} best_val={best_val:.6f}\n")
+        with (outdir/"log.txt").open("a", encoding="utf-8") as f:
+            f.write(f"epoch={epoch} train_loss={meter.avg:.6f} val_loss={v_meter.avg:.6f} best_val={best_val:.6f}\n")
 
     print(f"Saved checkpoints to {outdir}")
 
