@@ -6,6 +6,7 @@ This repo is an implementation for:
 <img width="4390" height="2621" alt="image" src="https://github.com/user-attachments/assets/86b16ed1-84ed-4af1-bb82-bd91d37791ef" />
 <img width="5564" height="1517" alt="image" src="https://github.com/user-attachments/assets/95fed592-3c46-4ad5-a117-31dff020fc5d" />
 
+<img width="909" height="665" alt="image" src="https://github.com/user-attachments/assets/d3739b00-70e2-479f-924c-45a36d2a675d" />
 
 It includes:
 - **SDC loss** = CE + *local calibration* (SAM) + *SDF alignment* (Listing 2)
